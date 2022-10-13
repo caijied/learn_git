@@ -25,6 +25,7 @@ class Car(models.Model):
         verbose_name = '车辆'
         verbose_name_plural = '车辆'
         ordering = ['-add_time']
+        unique_together = ['name', 'unit_type']
 
 
 class VPM(models.Model):

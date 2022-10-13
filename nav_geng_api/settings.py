@@ -38,9 +38,9 @@ CORS_ALLOW_CREDENTIALS = True
 
 # DRF配置
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         # DRF-JWT
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
