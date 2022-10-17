@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
+
 from nav import views as nav_views
+from amap import views as amap_views
 
 router = routers.DefaultRouter()
 # 车辆
@@ -31,4 +33,9 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('docs', include_docs_urls('接口文档')),
     path('admin/', admin.site.urls),
+
+    # path('amap/staticmaps/', amap_views.StaticMapsView.as_view())
+    path('amap/ipconfig/', amap_views.IpConfigView.as_view()),
+    path('amap/georegeo/', amap_views.GeoregeoView.as_view()),
+    path('amap/district/', amap_views.DistrictView.as_view())
 ]

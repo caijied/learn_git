@@ -67,6 +67,7 @@ INSTALLED_APPS = [
 
     # all apps:
     'nav.apps.NavConfig',
+    'amap',
 
     # all plugins:
     'rest_framework',
@@ -153,3 +154,6 @@ STATIC_URL = '/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 高德导航 WEB server API
+AMAP_WEB_SERVICE_KEY = 'dc695b0d19f2c711bcb45146b5169791'
