@@ -37,5 +37,6 @@ urlpatterns = [
     # 高德导航地图 API
     path('amap/ipconfig/', amap_views.IpConfigView.as_view()),
     path('amap/georegeo/', amap_views.GeoregeoView.as_view()),
-    path('amap/district/', amap_views.DistrictView.as_view())
+    path('amap/district/', amap_views.DistrictView.as_view()),
+    path('amap/direction/driving/', amap_views.DrivingView.as_view()),
 ]
