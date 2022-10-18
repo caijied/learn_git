@@ -11,21 +11,11 @@ from django.views import View
 from amap.utils import get_amap_data
 
 
-class StaticMapsView(View):
-    def get(self, request):
-        queryDict = {
-            'name': 'gengwenhao'
-        }
-        parameters = '&'.join([f'{item[0] - item[1]}' for item in queryDict.items()])
-
-        req_url = f'https://restapi.amap.com/v3/staticmap?key={settings.AMAP_WEB_SERVICE_KEY}&zoom=10'
-        resp = requests.get(req_url)
-        data = json.loads(resp.text)
-
-        return JsonResponse(data)
-
-
 class IpConfigView(View):
+    """
+        定位
+    """
+
     def get(self, request):
         data = get_amap_data('https://restapi.amap.com/v3/ip', {
             'key': settings.AMAP_WEB_SERVICE_KEY,

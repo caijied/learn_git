@@ -156,4 +156,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 高德导航 WEB server API
-AMAP_WEB_SERVICE_KEY = 'dc695b0d19f2c711bcb45146b5169791'
+AMAP_WEB_SERVICE_KEY = 'c2477cecb4700dd5dddc5b7e976d49aa'
