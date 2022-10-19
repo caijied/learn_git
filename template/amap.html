@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高德导航路径规划</title>
+    <style>
+        :root, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container"></div>
+
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=您申请的key值"></script>
+<script type="text/javascript">
+    var map = new AMap.Map('container', {
+        center: [117.000923, 36.675807],
+        zoom: 11
+    });
+    AMap.plugin('AMap.ToolBar', function () {//异步加载插件
+        var toolbar = new AMap.ToolBar();
+        map.addControl(toolbar);
+    });
+    // 创建一个 Marker 实例：
+    var marker = new AMap.Marker({
+        position: [116.39, 39.9],   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+        title: '北京'
+    });
+
+    // 将创建的点标记添加到已有的地图实例：
+    map.add(marker);
+
+</script>
+<script>
+    fetch('/amap/direction/driving/?origin=116.481028,39.989643&destination=116.465302,40.004717')
+        .then(res => {
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+            const paths = data.route.paths[0]
+            console.log(paths)
+
+            const points = paths.steps[0].polyline.split(';')
+            console.log(points)
+            for (let i = 0; i < points.length; i++) {
+                const pointArr = points[i].split(',').map(item => Number(item))
+                // 创建一个 Marker 实例：
+                var marker = new AMap.Marker({
+                    position: pointArr,   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+                    title: points[i]
+                });
+
+                // 将创建的点标记添加到已有的地图实例：
+                map.add(marker);
+                // 创建纯文本标记
+                var text = new AMap.Text({
+                    text: '桥梁宽度不够：宽度为：15米，不能通行',
+                    anchor: 'center', // 设置文本标记锚点
+                    draggable: true,
+                    cursor: 'pointer',
+                    angle: 0,
+                    style: {
+                        'padding': '.55rem 2.25rem',
+                        'margin-bottom': '1rem',
+                        'border-radius': '.25rem',
+                        'background-color': 'white',
+                        'width': '35rem',
+                        'border-width': 0,
+                        'box-shadow': '0 2px 6px 0 rgba(114, 124, 245, .5)',
+                        'text-align': 'center',
+                        'font-size': '20px',
+                        'color': 'blue'
+                    },
+                    position: pointArr,
+                });
+
+                text.setMap(map);
+            }
+        })
+</script>
+</body>
+</html>

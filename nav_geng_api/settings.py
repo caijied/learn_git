@@ -94,7 +94,7 @@ ROOT_URLCONF = 'nav_geng_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -156,4 +156,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 高德导航 WEB server API
-AMAP_WEB_SERVICE_KEY = 'c2477cecb4700dd5dddc5b7e976d49aa'
+AMAP_WEB_SERVICE_KEY = '11cecb0a9d9bcb4adcae41d19b6bf25a'
